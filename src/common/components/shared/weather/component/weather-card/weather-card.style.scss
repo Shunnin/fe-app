@@ -1,0 +1,138 @@
+@import 'style/foundation/config';
+
+.weather-card {
+	background-color: $c-wh;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: $b-border-radius-md;
+  padding: $b-space 0;
+  display: flex;
+  flex-direction: column;
+
+	@include respondto(xs, sm) {
+		padding: $b-space;
+	}
+
+	&__title {
+		font-weight: $b-font-weight-medium;
+    font-size: $b-line-height-heading;
+		margin: $b-space $b-space-2x;
+
+		@include respondto(xs, sm) {
+			margin: $b-space 0;
+		}
+	}
+
+	&__toggle {
+		line-height: $b-line-height-heading + 2 * $b-space;
+		margin: 0 $b-space-2x;
+
+		@include respondto(xs, sm) {
+			margin: 0;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	&__status {
+		display: flex;
+		flex-direction: column;
+		margin: $b-space $b-space-2x;
+		width: 400px;
+
+	  @include respondto(xs, sm) {
+			margin: $b-space 0;
+		}
+
+		&-name {
+			font-weight: $b-font-weight-bold;
+			font-size: $b-font-size-xl;
+			color: $c-lb7;
+			margin-bottom: $b-space;
+		}
+
+		&-desc {
+			font-size: $b-font-size-md;
+			text-align: center;
+			color: $c-gr1;
+		}
+
+		.temperature {
+			font-weight: $b-font-weight-light;
+			font-size: 7 * $b-font-size;
+			color: $c-lb7;
+			margin-left: $b-space-2x;
+
+			sup {
+				line-height: 0;
+			}
+		}
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		margin: $b-space $b-space-2x;
+
+		@include respondto(xs, sm) {
+			margin: $b-space 0;
+		}
+
+		&-feels-like {
+			font-size: $b-font-size-md;
+  		color: $c-gr1;
+		}
+
+		&-temp-degree{
+			display: flex;
+			margin-bottom: $b-space;
+			width: 16px;
+
+			.weather-degree {
+				display: flex;
+				align-items: center;
+				font-weight: $b-font-weight-medium;
+				font-size: $b-font-size-md;
+				color: $c-lb7;
+
+				margin-top: $b-space;
+				margin-right: $b-space-3x;
+
+				svg {
+					fill: $c-lb1;
+					margin-right: $b-space-s;
+				}
+			}
+		}
+
+		&-detail {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			margin-bottom: $b-space;
+
+			div {
+				color: $c-gr1;
+				display: flex;
+				align-items: center;
+				font-size: $b-font-size;
+				width: 128px;
+			}
+
+			svg {
+				fill: $c-lb1;
+				width: 26px;
+				margin-right: $b-space-s;
+			}
+
+			span {
+				color: $c-lb7;
+				font-weight: $b-font-weight-medium;
+				font-size: $b-font-size;
+			}
+		}
+	}
+}

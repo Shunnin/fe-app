@@ -1,0 +1,15 @@
+@import 'style/foundation/config';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  text-decoration: unset;
+  padding: $b-space-2x 0;
+
+  &__title {
+    font-size: 32px;
+    color: $c-lb7;
+  }
+}

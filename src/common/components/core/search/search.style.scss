@@ -1,0 +1,68 @@
+@import 'style/foundation/config';
+
+.search-box {
+  height: 48px;
+  border-radius: $b-border-radius-md;
+  background: $c-wh;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: $b-space-2x;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+
+  &__icon {
+    margin-left: $b-space;
+    fill: $c-lb7;
+  }
+
+  &__input {
+    flex: 1;
+    margin-left: $b-space;
+    height: 48px;
+    width: 100%;
+
+    border: none;
+    box-sizing: border-box;
+    font-size: $b-font-size;
+    background-color: $c-wh;
+    color: $c-blk;
+    border-radius: $b-border-radius-md;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $c-gr1;
+    }
+  }
+
+  &__suggestions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: $c-wh;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    width: 98%;
+    left: 1%;
+    top: 54px;
+    border-radius: $b-border-radius;
+    overflow: hidden;
+
+    & &-item {
+      color: $c-gr1;
+      text-decoration: none;
+      padding: $b-space-s $b-space;
+      display: block;
+      text-align: left;
+      border-bottom: 1px solid $c-gr3;
+      font-size: $b-font-size;
+
+      &:hover {
+        background-color: $c-lb3;
+      }
+    }
+  }
+}

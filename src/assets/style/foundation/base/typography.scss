@@ -1,0 +1,24 @@
+.text {
+  &-sm {
+    font-size: $b-font-size-sm;
+  }
+
+  &-xs {
+    font-size: $b-font-size-xs;
+  }
+}
+
+body {
+  font-family: $b-font-family;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+	background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center center fixed, linear-gradient($c-c6 0%, $c-c3 100%) no-repeat center center fixed;
+	background-size: cover;
+}
+
+#app {
+  max-width: 960px;
+  width: 100%;
+  margin: auto 0px;
+}

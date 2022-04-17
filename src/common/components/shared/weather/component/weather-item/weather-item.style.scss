@@ -1,0 +1,31 @@
+@import 'style/foundation/config';
+
+.weather-item {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: $b-space;
+
+  & &__day {
+    font-weight: $b-font-weight-bold;
+    font-size: $b-font-size;
+    color: $c-lb7;
+  }
+
+  svg {
+    margin: $b-space-s 0;
+  }
+
+  & &__forecast {
+    font-weight: $b-font-weight-medium;
+    font-size: $b-font-size-sm;
+    color: $c-gr1;
+  }
+
+  & &__degree {
+    font-size: $b-font-size-xs;
+    color: $c-lb7;
+    width: 5rem;
+    text-align: center;
+  }
+}

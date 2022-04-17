@@ -1,0 +1,29 @@
+/*--------------------------------------
+  Spacing
+--------------------------------------*/
+
+$b-space:                    16px;
+$b-space-s:                  0.5 * $b-space;
+$b-space-xs:                 0.25 * $b-space;
+$b-space-2x:                 2 * $b-space;
+$b-space-3x:                 3 * $b-space;
+$b-space-4x:                 4 * $b-space;
+
+/* ----- Line height ----- */
+$b-line-height:              1.5 * $b-space;
+$b-line-height-heading:      1.25 * $b-space;
+
+/* ----- Grid ----- */
+$grid-gutter-width:          32px !default;
+
+/* ----- Small screen / tablet ----- */
+$container-tablet:               (720px + $grid-gutter-width) !default;
+$container-sm:                   $container-tablet !default;
+
+/* ----- Medium screen / desktop ----- */
+$container-desktop:              (940px + $grid-gutter-width) !default;
+$container-md:                   $container-desktop !default;
+
+/* ----- Large screen / wide desktop ----- */
+$container-large-desktop:        (1140px + $grid-gutter-width) !default;
+$container-lg:                   $container-large-desktop !default;

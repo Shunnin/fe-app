@@ -1,0 +1,20 @@
+$section-padding: $b-space-2x;
+
+/* ----- Section Header ----- */
+.section {
+  padding: $b-space;
+
+  /* ----- Section Title ----- */
+  &__title {
+    margin: $section-padding;
+    font-weight: $b-font-weight-medium;
+    font-size: $b-line-height-heading;
+  }
+
+  /* ----- Section Content ----- */
+  &__content {
+    @include clearfix();
+
+    padding: $b-space-2x;
+  }
+}
