@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-// import { AppStore } from '../../store/store';
+
 import { celsiusToFahrenheit, TEMP_UNIT } from '../../../../../utility';
 
 interface ITemperatureProps {

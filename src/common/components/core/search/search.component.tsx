@@ -22,8 +22,6 @@ const SuggestionItem: FC<ISuggestionItemProps> = ({ label, onClickSuggestion, se
 
     onClickSuggestion(value);
     setShowSuggestions(false);
-
-    // suggestionRef.target.value = label;
   }, [onClickSuggestion, label, suggestionRef]);
 
   return (
@@ -71,6 +69,7 @@ const SuggestionList: FC<ISuggestionListProps> = memo(
 SuggestionList.displayName = 'SuggestionList';
 
 interface ISearchBoxProps {
+  placeholder?: string;
   suggestions: string[];
   maxSuggestItem?: number;
   onClickSearch: Function;
@@ -78,6 +77,7 @@ interface ISearchBoxProps {
 }
 
 export const SearchBox: FC<ISearchBoxProps> = ({
+  placeholder,
   suggestions,
   maxSuggestItem = MAX_SUGGESTION_ITEMS,
   onClickSearch = EMPTY_FUNC,
@@ -113,7 +113,7 @@ export const SearchBox: FC<ISearchBoxProps> = ({
         className="search-box__input"
         debounceTimeout={DEFAULT_DEBOUNCE_TIME}
         onChange={handleSearchInputChanged}
-        placeholder="Search for location"
+        placeholder={placeholder}
       />
 
       <SuggestionList

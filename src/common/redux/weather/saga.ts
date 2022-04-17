@@ -4,6 +4,7 @@ import { reduce, join } from 'lodash-es';
 
 import {
   INT_ZERO,
+  DEFAULT_LOCALE,
   API_URL_GET_CURRENT_WEATHER,
   API_URL_GET_DAILY_FORECAST,
   API_URL_SEARCH_LOCATION,
@@ -30,7 +31,6 @@ const getCurrentWeather = (value: any) => {
 };
 
 const getDailyForecast = (value: any) => {
-  console.log('file: saga.ts ~ line 30 ~ getDailyForecast ~ value', value);
   const apiUrl = UrlUtil.buildQueryUrl(API_URL_GET_DAILY_FORECAST, {
     ...value,
     appid: '20571ab45c74dc2a1897b60c5b8047a1',
@@ -43,7 +43,7 @@ const searchLocation = (value: any) => {
   const data = JSON.stringify({
     query: value,
     type: 'city',
-    language: 'en',
+    language: DEFAULT_LOCALE,
   });
 
   return axios.post(API_URL_SEARCH_LOCATION, data);

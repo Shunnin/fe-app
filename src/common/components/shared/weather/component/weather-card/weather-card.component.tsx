@@ -1,9 +1,11 @@
 import { FC, memo } from 'react';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { isEmpty } from 'lodash-es';
 
 import { WeatherData } from '../../../../../../models';
 import { EMPTY_FUNC, TEMP_UNIT, TEMP_UNIT_MAPPING_LABEL, TEMP_UNIT_VALUE, kmToMile } from '../../../../../utility';
-
 import { ToggleSwitch } from '../../../../core/toggle-switch';
+
 import { Temperature } from '../temperature/temperature.component';
 import { WeatherIcon, HighIcon, HumidityIcon, LowIcon, PressureIcon, WindIcon } from '../weather-icon';
 
@@ -41,7 +43,10 @@ const WeatherCardInfo: FC<IWeatherCardInfoProps> = ({ weather, degreeType }) => 
   return (
     <div className="weather-card__info">
       <div className="weather-card__info-feels-like">
-        Feels like <Temperature value={feelsLike} />
+        <FormattedMessage
+          defaultMessage="Feels like {feelsLike}"
+          values={{ feelsLike: <Temperature value={feelsLike} /> }}
+        />
       </div>
       <div className="weather-card__info-temp-degree">
         <div className="weather-degree">
@@ -56,26 +61,33 @@ const WeatherCardInfo: FC<IWeatherCardInfoProps> = ({ weather, degreeType }) => 
       <div className="weather-card__info-detail">
         <div>
           <HumidityIcon />
-          {'Humidity'}
+          <FormattedMessage defaultMessage="Humidity" />
         </div>
-        <span>{humidity}%</span>
+        <span>
+          <FormattedMessage defaultMessage="{humidity}%" values={{ humidity }} />
+        </span>
       </div>
       <div className="weather-card__info-detail">
         <div>
           <WindIcon />
-          {'Wind'}
+          <FormattedMessage defaultMessage="Wind" />
         </div>
         <span>
-          {degreeType === TEMP_UNIT.CELSIUS ? speed : kmToMile(speed)}
-          {degreeType === TEMP_UNIT.CELSIUS ? 'kph' : 'mph'}
+          {degreeType === TEMP_UNIT.CELSIUS ? (
+            <FormattedMessage defaultMessage="{speed} kph" values={{ speed }} />
+          ) : (
+            <FormattedMessage defaultMessage="{speed} mph" values={{ speed: kmToMile(speed) }} />
+          )}
         </span>
       </div>
       <div className="weather-card__info-detail">
         <div>
           <PressureIcon />
-          {'Pressure'}
+          <FormattedMessage defaultMessage="Pressure" />
         </div>
-        <span>{pressure}hPa</span>
+        <span>
+          <FormattedMessage defaultMessage="{pressure} hPa" values={{ pressure }} />
+        </span>
       </div>
     </div>
   );
@@ -89,15 +101,22 @@ interface IWeatherCardProps {
 
 export const WeatherCard: FC<IWeatherCardProps> = memo(
   ({ weather, degreeType, onClickChangeTempUnit = EMPTY_FUNC }) => {
+    const intl = useIntl();
     const { name, id, description, tempDetails: { temp } = {} } = weather as WeatherData;
+
+    if (isEmpty(weather)) {
+      return <></>;
+    }
 
     return (
       <div className="weather-card">
         <div className="flex space-between">
-          <div className="weather-card__title">Current Weather</div>
+          <div className="weather-card__title">
+            <FormattedMessage defaultMessage="Current Weather" />
+          </div>
           <div className="weather-card__toggle">
             <ToggleSwitch
-              name="Temperature Unit"
+              name={intl.formatMessage({ defaultMessage: 'Temperature Unit' })}
               defaultValue={TEMP_UNIT_VALUE.CELSIUS}
               mappingLabel={TEMP_UNIT_MAPPING_LABEL}
               onClick={onClickChangeTempUnit}
