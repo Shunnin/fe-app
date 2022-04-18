@@ -92,10 +92,10 @@ export const SearchBox: FC<ISearchBoxProps> = ({
   }, [searchKeyword]);
 
   useEffect(() => {
-    if (!isEmpty(suggestions)) {
-      setShowSuggestions(true);
-      setOptionSuggestions(suggestions);
-    }
+    const ableShowSuggestions = !isEmpty(suggestions);
+
+    setShowSuggestions(ableShowSuggestions);
+    setOptionSuggestions(suggestions);
   }, [suggestions]);
 
   const handleSearchInputChanged = useCallback(

@@ -67,7 +67,7 @@ const Home: FC = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const [queryParams, setQueryParams] = useState(null);
-  const [locations, setLocations] = useState([] as string[]);
+  const [locations, setLocations] = useState<string[]>([]);
   const [weather, setWeather] = useState({});
   const [dailyForeCast, setDailyForeCast] = useState([]);
 
