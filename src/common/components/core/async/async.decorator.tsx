@@ -6,7 +6,6 @@ import { retry } from '../../../utility';
 interface Dependency {
   saga: any;
   reducer: any;
-  relative?: any;
 }
 
 interface AsyncComponentState {
@@ -17,30 +16,12 @@ interface AsyncComponentState {
 const RETRY_COUNT = 5;
 const RETRY_INTERVAL = 3000;
 
-/**
- * Higher order component that handle Async load component
- *
- * @param   {Object} options   Parameters is passed to decorator component
- * @returns {Func}             Enhancer decorator
- */
 export const asyncComponent = options => {
-  /**
-   * @param {Promise} component      System.import()
-   * @param {*}       store          Store
-   * @param {Object}  initialProps   Initial props
-   * @param {Object}  dependencies   Dependencies
-   */
   const { component, store, initialProps = {}, dependencies = {}, moduleName, clearState = true } = options;
 
   return class AsyncComponent extends ReactComponent<{}, AsyncComponentState> {
     private moduleNames: string[];
 
-    /**
-     * Constructor
-     *
-     * @param   {Object} props   Props
-     * @returns {Void}
-     */
     constructor(props) {
       super(props);
 
@@ -51,23 +32,10 @@ export const asyncComponent = options => {
       this.moduleNames = [];
     }
 
-    /**
-     * Handles load module error
-     *
-     * @param   {String} error   Error string
-     * @returns {Error}          Throw Error message
-     */
     loadModuleError = error => {
       throw new Error(`Dynamic component loading failed: ${error}`);
     };
 
-    /**
-     * Handles should component update or not
-     *
-     * @param   {Object} nextProps   The nextProps
-     * @param   {Object} nextState   The nextState
-     * @returns {Boolean}            Should update or not
-     */
     shouldComponentUpdate(nextProps, nextState) {
       const isStateChanged = this.state !== nextState;
       const isPropsChanged = this.props !== nextProps;
@@ -75,17 +43,11 @@ export const asyncComponent = options => {
       return isStateChanged || isPropsChanged;
     }
 
-    /**
-     * Handles load module
-     *
-     * @param   {Object} module   Module object
-     * @returns {Func}            Module/Class/Function
-     */
     loadModule = module => {
       const target = module.default || module;
       const componentDependencies = module.dependencies || dependencies;
 
-      // this.injectDependencies(componentDependencies);
+      this.injectDependencies(componentDependencies);
 
       this.setState({
         Component: target,
@@ -93,12 +55,6 @@ export const asyncComponent = options => {
       });
     };
 
-    /**
-     * Injects dependencies for using when component mounted
-     *
-     * @param   {Object} componentDependencies The loaded dependencies
-     * @returns {Void}
-     */
     injectDependencies(componentDependencies) {
       const registerModule = (mName, mDependencies, { setClearState }) => {
         if (!mName) return;
@@ -127,7 +83,7 @@ export const asyncComponent = options => {
     }
 
     componentWillUnmount() {
-      // store && store.dispatch(clearModuleState({ moduleNames: this.moduleNames }));
+      // Dispatch enject reducer and saga here
     }
 
     /**

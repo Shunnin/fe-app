@@ -3,7 +3,8 @@ import { DebounceInput } from 'react-debounce-input';
 import { slice, map, isEmpty, split } from 'lodash-es';
 
 import { INT_ZERO, DEFAULT_DEBOUNCE_TIME, EMPTY_FUNC } from '../../../utility';
-import { ReactComponent as SearchIcon } from '../../../../assets/images/search-icon.svg';
+import { SearchIcon } from '../icon';
+
 import { useClickOutside } from '../../../hooks';
 
 import './search.style';

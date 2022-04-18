@@ -6,11 +6,7 @@ import { IntlProvider } from 'react-intl';
 import { URL_APP, DEFAULT_LOCALE } from '../../common/utility/constant';
 import { appRoutes } from './app.route';
 
-interface AppProps {
-  history?: History;
-}
-
-export const App: FC<AppProps> = ({ history }) => {
+export const App: FC = () => {
   return (
     <IntlProvider locale={DEFAULT_LOCALE}>
       <BrowserRouter>

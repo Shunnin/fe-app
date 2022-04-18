@@ -5,9 +5,10 @@ import { isEmpty } from 'lodash-es';
 import { WeatherData } from '../../../../../../models';
 import { EMPTY_FUNC, TEMP_UNIT, TEMP_UNIT_MAPPING_LABEL, TEMP_UNIT_VALUE, kmToMile } from '../../../../../utility';
 import { ToggleSwitch } from '../../../../core/toggle-switch';
+import { HighIcon, HumidityIcon, LowIcon, PressureIcon, WindIcon } from '../../../../core/icon';
 
 import { Temperature } from '../temperature/temperature.component';
-import { WeatherIcon, HighIcon, HumidityIcon, LowIcon, PressureIcon, WindIcon } from '../weather-icon';
+import { WeatherIcon } from '../weather-icon';
 
 import './weather-card.style';
 

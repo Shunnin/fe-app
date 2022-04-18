@@ -1,108 +1,68 @@
+import { History } from 'history';
 import { createStore, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
 
-import rootReducer from './reducer';
-import { rootSaga } from './middleware';
+import { createReducer } from './reducer';
 
-// Create the saga middleware
-const sagaMiddleware = createSagaMiddleware();
+export interface IStoreParams {
+  history: History;
+  reducers?: any;
+  sagas?: any;
+  initialState?: any;
+}
 
-// Mount it on the Store
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+export class Store {
+  private store: any;
+  private static instance: any;
 
-// Run the saga
-sagaMiddleware.run(rootSaga);
+  constructor() {
+    if (!Store.instance) {
+      Store.instance = this;
+    }
 
-export default store;
+    return Store.instance;
+  }
 
-// import { createStore, applyMiddleware } from 'redux';
-// import { routerMiddleware } from 'connected-react-router/immutable';
+  config({ rootReducer, sagaMiddleware, initialState, history }) {
+    const reduxRouterMiddleware = routerMiddleware(history);
+    const middlewares = [reduxRouterMiddleware, sagaMiddleware];
+    const finalCreateStore = applyMiddleware(...middlewares)(createStore);
 
-// import { createReducer } from './reducer';
-// import { createSaga } from './middleware';
+    return finalCreateStore(rootReducer, initialState);
+  }
 
-// export class Store {
-// 	private store: any;
+  create<IStoreParams>({ reducers, sagas, history, initialState = {} }) {
+    const sagaMiddleware = createSagaMiddleware();
+    const rootReducer = createReducer(reducers);
 
-//   // constructor() {
-//   //   if (!Store.instance) {
-//   //     Store.instance = this;
-//   //   }
+    this.store = this.config({ rootReducer, sagaMiddleware, initialState, history });
+    this.store.reducers = reducers;
+    this.store.history = history;
+    this.store.sagas = new Map();
+    this.store.runSaga = sagaMiddleware.run;
 
-//   //   return Store.instance;
-//   // }
+    return this.store;
+  }
 
-//   /**
-//    * Config store with middlewares/logger/devtools
-// 	 *
-//    * @param  {Object} settings         The store options
-//    *                  - rootReducer    The root reducer
-//    *                  - sagaMiddleware The saga middleware
-//    *                  - initialState   Initial state
-//    *                  - history        Browser history
-//    * @return {Object}                  The Redux store
-//    */
-//   config(settings) {
-//     const { rootReducer, sagaMiddleware, initialState, history } = settings;
-//     const reduxRouterMiddleware = routerMiddleware(history);
-//     const middlewares = [reduxRouterMiddleware, sagaMiddleware];
-//     const finalCreateStore = applyMiddleware(...middlewares)(createStore);
+  injectReducer(name, reducer, configuredStore = this.store) {
+    if (configuredStore && name && reducer) {
+      configuredStore.reducers[name] = reducer;
+      configuredStore.replaceReducer(createReducer(configuredStore.reducers));
+    }
+  }
 
-//     return finalCreateStore(rootReducer, initialState);
-//   }
+  injectSaga(name, saga, configuredStore = this.store) {
+    const isInjected = configuredStore.sagas.has(name);
 
-//   /**
-//    * Create store
-//    *
-//    * @param  {Object} settings         The store settings
-//    *                  - reducers       Reducers
-//    *                  - sagas          Epics
-//    *                  - initialState   Initial state
-//    *                  - history        Browser history
-//    *                  - options        Additional options
-//    *                    + dependencies The saga dependencies
-//    * @return {Object}                  Application store
-//    */
-//   create(settings) {
-//     const { reducers, initialState, history, sagas, sagaDependencies } = settings;
-//     const rootReducer = createReducer(reducers, history);
-// 		const sagaMiddleware = createSagaMiddleware();
-//     // const { rootSaga, sagaMiddleware } = createSaga(sagas, sagaDependencies);
+    if (saga && configuredStore && !isInjected) {
+      const task = configuredStore.runSaga(saga);
 
-//     this.store = this.config({ rootReducer, sagaMiddleware, initialState, history });
-//     this.store.reducers = reducers || {};
-//     this.store.history = history;
-//     // this.store.sagas = {};
+      configuredStore.sagas.set(name, task);
+    }
+  }
 
-//     // sagaMiddleware.run(rootSaga);
-
-//     return this.store;
-//   }
-
-//   /**
-//    * Dynamic inject async reducer to store
-//    *
-//    * @param {String} name             Reducer name
-//    * @param {Function} reducer        Reducer
-//    * @param {Object} configuredStore  Store. Defaults to current store
-//    * @return {Void}
-//    */
-//   injectReducer(name, reducer, configuredStore = this.store) {
-//     if (configuredStore && name && reducer) {
-//       configuredStore.reducers[name] = reducer;
-//       configuredStore.replaceReducer(createReducer(configuredStore.reducers, configuredStore.history));
-//     }
-//   }
-
-//   /**
-//    * Dispatch the given action to current redux store.
-//    * Before calling this, make sure redux store have been created by
-//    * {@link create}
-//    *
-//    * @param {Object} action Standard redux action
-//    * @return {Void}
-//    */
-//   dispatch(action) {
-//     this.store.dispatch(action);
-//   }
-// }
+  dispatch(action) {
+    this.store.dispatch(action);
+  }
+}

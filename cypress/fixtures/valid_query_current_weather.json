@@ -1,0 +1,22 @@
+{
+  "coord": { "lon": 106.6667, "lat": 10.75 },
+  "weather": [{ "id": 802, "main": "Clouds", "description": "scattered clouds", "icon": "03d" }],
+  "base": "stations",
+  "main": {
+    "temp": 306.16,
+    "feels_like": 309.18,
+    "temp_min": 306.16,
+    "temp_max": 306.16,
+    "pressure": 1006,
+    "humidity": 49
+  },
+  "visibility": 10000,
+  "wind": { "speed": 3.09, "deg": 170, "gust": 8.75 },
+  "clouds": { "all": 40 },
+  "dt": 1650273535,
+  "sys": { "type": 1, "id": 9314, "country": "VN", "sunrise": 1650235253, "sunset": 1650279854 },
+  "timezone": 25200,
+  "id": 1566083,
+  "name": "Ho Chi Minh City",
+  "cod": 200
+}

@@ -1,17 +1,24 @@
-import { lazy } from 'react';
-
+import { store } from '../../store';
 import { asyncComponent } from '../../common/components/core';
+import { URL_HOME } from '../../common/utility/constant';
 
-// const HomeComponent = lazy(() => import('./home.component'));
-const homeComponent = () => import('./home.component');
+import { HOME_MODULE } from './home.reducer';
 
 const component = asyncComponent({
-  component: homeComponent,
+  component: () =>
+    import(
+      /* webpackChunkName: 'front-app' */
+      /* webpackMode: "lazy" */
+      /* webpackPrefetch: true */
+      './home.component'
+    ),
+  store,
+  moduleName: HOME_MODULE,
 });
 
 export const homeRoute = {
-  path: '/',
-  exact: true,
   component,
+  path: URL_HOME,
+  exact: true,
   routes: [],
 };

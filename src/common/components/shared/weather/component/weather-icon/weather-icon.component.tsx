@@ -11,7 +11,7 @@ import {
   SnowIcon,
   SunnyIcon,
   ThunderstormIcon,
-} from './weather-icon.constant';
+} from '../../../../core/icon';
 
 interface IWeatherIconProps {
   code: number;
@@ -30,9 +30,9 @@ export const WeatherIcon: FC<IWeatherIconProps> = ({ code, big = false }) => {
 
     // Cloud
     case 801:
-    case 802:
       Icon = PartlyCloudyIcon;
       break;
+    case 802:
     case 803:
     case 804:
       Icon = CloudyIcon;

@@ -9,7 +9,7 @@ interface ITemperatureProps {
 
 export const Temperature: FC<ITemperatureProps> = ({ value }) => {
   const { degreeType } = useSelector((state: any) => ({
-    degreeType: state?.app?.tempUnit,
+    degreeType: state?.appModule?.tempUnit,
   }));
 
   const temperatureDegree = useMemo(() => {

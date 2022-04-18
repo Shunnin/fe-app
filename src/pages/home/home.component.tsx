@@ -7,20 +7,18 @@ import { DailyForecastData } from '../../models';
 import { WeatherCard, WeatherItem, composeWeatherData, composeDailyForecastData } from '../../common/components/shared';
 import { Header, SearchBox, Loading } from '../../common/components/core';
 
-import { changeTempUnit } from '../../common/redux/app/action';
-import {
-  getCurrentWeatherRequest,
-  getDailyForecastRequest,
-  getLocationRequest,
-} from '../../common/redux/weather/action';
+import { changeTempUnit } from '../../common/redux/service/app/app.action';
+import { getCurrentWeatherRequest, getDailyForecastRequest, getLocationRequest } from './home.action';
 import {
   getLoadingSelector,
   getWeatherSelector,
   getDailyForecastSelector,
   getLocationsSelector,
   getErrorSelector,
-} from '../../common/redux/weather/selector';
+} from './home.selector';
 
+import { homeReducer } from './home.reducer';
+import { homeSaga } from './home.saga';
 import './home.style';
 
 interface IDailyForecastProps {
@@ -72,7 +70,7 @@ const Home: FC = () => {
   const [dailyForeCast, setDailyForeCast] = useState([]);
 
   const { degreeType } = useSelector((state: any) => ({
-    degreeType: state?.app?.tempUnit,
+    degreeType: state?.appModule?.tempUnit,
   }));
 
   const errors = useSelector(getErrorSelector);
@@ -155,3 +153,8 @@ const Home: FC = () => {
 };
 
 export default Home;
+
+export const dependencies = {
+  reducer: homeReducer,
+  saga: homeSaga,
+};
