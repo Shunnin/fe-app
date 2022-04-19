@@ -1,22 +1,15 @@
-import path from 'path';
-import { Configuration as WebpackConfiguration } from 'webpack';
-import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 
-interface Configuration extends WebpackConfiguration {
-  devServer?: WebpackDevServerConfiguration;
-}
+import settings from '../setting';
 
-const config: Configuration = {
-  mode: 'development',
-  output: {
-    publicPath: '/',
-  },
-  entry: './src/index.tsx',
-  module: {
-    rules: [
+const { paths, hosts, ports } = settings;
+
+const baseSettings = {
+  settings: {
+    paths,
+    commonLoaders: [
       /* ts files */
       {
         test: /.(ts|tsx)$/,
@@ -70,34 +63,28 @@ const config: Configuration = {
         ],
       },
     ],
+    hosts: hosts,
+    ports: ports,
+    entry: "./src/index.tsx",
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.html', '.css', '.scss'],
+  webpack: {
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js', '.html', '.css', '.scss'],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "src/index.html",
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        async: false,
+      }),
+      new ESLintPlugin({
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        emitError: true,
+        emitWarning: false,
+      }),
+    ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
-    // new ESLintPlugin({
-    //   extensions: ['js', 'jsx', 'ts', 'tsx'],
-    //   emitError: true,
-    //   emitWarning: false,
-    // }),
-  ],
-  devtool: 'inline-source-map',
-  devServer: {
-    static: path.join(__dirname, 'build'),
-    historyApiFallback: true,
-    port: 4000,
-    open: true,
-    hot: true,
-  },
-  performance: {
-    maxEntrypointSize: 800000,
-  },
-};
+}
 
-export default config;
+export default baseSettings;

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.prod.config.ts",
+    "build": "better-npm-run build",
     "dev": "better-npm-run dev",
     "lint": "eslint -c .eslintrc src --quiet",
     "lint:fix": "npm run lint -- --fix",
@@ -21,9 +21,15 @@
   "license": "ISC",
   "betterScripts": {
     "dev": {
-      "command": "webpack serve --config webpack.dev.config.ts",
+      "command": "webpack serve --config config/webpack/dev.ts",
       "env": {
         "NODE_ENV": "development"
+      }
+    },
+    "build": {
+      "command": "webpack --progress --config config/webpack/prod.ts",
+      "env": {
+        "NODE_ENV": "production"
       }
     }
   },
