@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherCard /> renders empty element and matches the snapshot when given empty weather 1`] = `null`;
+
+exports[`<WeatherCard /> renders weather card and matches the snapshot when given valid weather 1`] = `
+<div
+  class="weather-card"
+>
+  <div
+    class="flex space-between"
+  >
+    <div
+      class="weather-card__title"
+    >
+      Current Weather
+    </div>
+    <div
+      class="weather-card__toggle"
+    >
+      <div
+        aria-label="Temperature Unit"
+        class="toggle-switch clickable"
+        role="button"
+        tabindex="0"
+      >
+        <span
+          class="toggle-switch__on"
+        >
+          C
+        </span>
+        <div
+          class="toggle-switch__indicator is-toggled"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    class="weather-card__content"
+  >
+    <div
+      class="weather-card__status"
+    >
+      <div
+        class="weather-card__status-name"
+      >
+        Ho Chi Minh City
+      </div>
+      <div
+        class="flex"
+      >
+        <reactcomponent
+          style="width: 100px; height: 100px;"
+        />
+        <span
+          class="temperature"
+        >
+          33
+          <sup>
+            °
+          </sup>
+        </span>
+      </div>
+      <div
+        class="weather-card__status-desc text-capitalize"
+      >
+        scattered clouds
+      </div>
+    </div>
+    <div
+      class="weather-card__info"
+    >
+      <div
+        class="weather-card__info-feels-like"
+      >
+        Feels like 
+        <span
+          class="temperature"
+        >
+          36
+          <sup>
+            °
+          </sup>
+        </span>
+      </div>
+      <div
+        class="weather-card__info-temp-degree"
+      >
+        <div
+          class="weather-degree"
+        >
+          <reactcomponent />
+          <span
+            class="temperature"
+          >
+            33
+            <sup>
+              °
+            </sup>
+          </span>
+        </div>
+        <div
+          class="weather-degree"
+        >
+          <reactcomponent />
+          <span
+            class="temperature"
+          >
+            33
+            <sup>
+              °
+            </sup>
+          </span>
+        </div>
+      </div>
+      <div
+        class="weather-card__info-detail"
+      >
+        <div>
+          <reactcomponent />
+          Humidity
+        </div>
+        <span>
+          49%
+        </span>
+      </div>
+      <div
+        class="weather-card__info-detail"
+      >
+        <div>
+          <reactcomponent />
+          Wind
+        </div>
+        <span>
+          11 kph
+        </span>
+      </div>
+      <div
+        class="weather-card__info-detail"
+      >
+        <div>
+          <reactcomponent />
+          Pressure
+        </div>
+        <span>
+          1006 hPa
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchBox /> renders and matches the snapshot with default props 1`] = `
+<div
+  class="search-box"
+>
+  <reactcomponent
+    class="search-box__icon"
+  />
+  <input
+    class="search-box__input"
+    placeholder="Search location"
+    type="text"
+    value=""
+  />
+</div>
+`;
+
+exports[`<SearchBox /> renders and matches the snapshot with given suggestion list 1`] = `
+<div
+  class="search-box"
+>
+  <reactcomponent
+    class="search-box__icon"
+  />
+  <input
+    class="search-box__input"
+    placeholder="Search location"
+    type="text"
+    value=""
+  />
+  <div
+    class="search-box__suggestions"
+  >
+    <div
+      class="search-box__suggestions-item clickable"
+    >
+      Hanoi, VN
+    </div>
+    <div
+      class="search-box__suggestions-item clickable"
+    >
+      Hue, VN
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<SearchBox /> renders and matches the snapshot with ignore onClickSearch and onClickSuggestion 1`] = `
+<div
+  class="search-box"
+>
+  <reactcomponent
+    class="search-box__icon"
+  />
+  <input
+    class="search-box__input"
+    placeholder="Search location"
+    type="text"
+    value=""
+  />
+</div>
+`;

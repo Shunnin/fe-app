@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherIcon /> renders big weather icon and matches the snapshot 1`] = `
+<reactcomponent
+  style="width: 100px; height: 100px;"
+/>
+`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 200 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 201 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 202 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 210 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 211 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 212 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 221 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 230 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 231 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 232 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 300 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 301 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 302 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 310 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 311 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 312 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 313 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 314 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 321 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 500 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 501 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 502 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 503 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 504 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 511 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 520 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 521 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 522 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 531 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 600 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 601 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 602 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 611 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 612 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 613 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 615 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 616 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 620 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 621 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 622 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 701 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 711 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 721 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 731 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 741 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 751 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 761 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 762 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 771 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 781 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 800 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 801 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 802 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 803 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 804 1`] = `<reactcomponent />`;
+
+exports[`<WeatherIcon /> renders weather icon and matches the snapshot when given weather code is 99999 1`] = `<reactcomponent />`;

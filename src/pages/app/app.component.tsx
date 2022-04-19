@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { History } from 'history';
 import { IntlProvider } from 'react-intl';
 
 import { URL_APP, DEFAULT_LOCALE } from '../../common/utility/constant';

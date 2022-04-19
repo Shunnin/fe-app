@@ -7,7 +7,7 @@ import { DailyForecastData } from '../../models';
 import { WeatherCard, WeatherItem, composeWeatherData, composeDailyForecastData } from '../../common/components/shared';
 import { Header, SearchBox, Loading } from '../../common/components/core';
 import { changeTempUnit as changeTempUnitAction } from '../../common/redux/service/app/';
-import { pipe } from '../../common/utility';
+import { pipe, IFunction } from '../../common/utility';
 
 import { getCurrentWeather, getDailyForecast, getLocation } from './home.action';
 import { homeSelectors } from './home.selector';
@@ -62,10 +62,10 @@ interface IHomeProps {
   dailyForecast: any;
   locations: string[];
   degreeType: string;
-  getCurrentWeatherRequest: Function;
-  getDailyForecastRequest: Function;
-  getLocationRequest: Function;
-  changeTempUnit: Function;
+  getCurrentWeatherRequest: IFunction;
+  getDailyForecastRequest: IFunction;
+  getLocationRequest: IFunction;
+  changeTempUnit: IFunction;
 }
 
 const Home: FC<IHomeProps> = ({

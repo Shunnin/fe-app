@@ -1,4 +1,3 @@
-import { ElementType } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Switch, Route } from 'react-router-dom';
 import { map } from 'lodash-es';

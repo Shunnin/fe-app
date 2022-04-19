@@ -18,5 +18,6 @@ export const TEMP_UNIT_MAPPING_LABEL = Object.freeze({
 });
 
 export const EMPTY_FUNC = noop;
+export type IFunction = ReturnType<typeof EMPTY_FUNC>;
 
 export const DEFAULT_LOCALE = 'en';

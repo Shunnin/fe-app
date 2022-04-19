@@ -1,8 +1,8 @@
 import { FC, useState, useCallback, useMemo } from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { get } from 'lodash-es';
 
-import { EMPTY_FUNC } from '../../../utility';
+import { EMPTY_FUNC, IFunction } from '../../../utility';
 import './toggle-switch.style';
 
 interface IMappingLabel {
@@ -14,7 +14,7 @@ interface IToggleSwitchProps {
   name?: string;
   defaultValue?: boolean;
   mappingLabel?: IMappingLabel;
-  onClick: Function;
+  onClick: IFunction;
 }
 
 export const ToggleSwitch: FC<IToggleSwitchProps> = ({

@@ -1,5 +1,7 @@
 import { trimStart, isUndefined } from 'lodash-es';
 
+import { IFunction } from '../../utility';
+
 const DELIMITER = '/';
 const REQUEST = 'REQUEST';
 const SUCCESS = 'SUCCESS';
@@ -12,16 +14,16 @@ interface IAsyncActionType {
 }
 
 interface IAsyncActionCreator {
-  request: Function;
-  success: Function;
-  error: Function;
+  request: IFunction;
+  success: IFunction;
+  error: IFunction;
 }
 
-export const createActionType = (type: string, module: string = '') => {
+export const createActionType = (type: string, module = '') => {
   return trimStart(`${module}${DELIMITER}${type}`, DELIMITER);
 };
 
-export const createAsyncActionType = (type: string, module: string = ''): IAsyncActionType => {
+export const createAsyncActionType = (type: string, module = ''): IAsyncActionType => {
   return [REQUEST, SUCCESS, ERROR].reduce(
     (acc, asyncType) => {
       const actionType = `${type}_${asyncType}`;

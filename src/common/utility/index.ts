@@ -5,3 +5,4 @@ export * from './temperature';
 export * from './common';
 export * from './pipe';
 export * from './url';
+export * from './test';

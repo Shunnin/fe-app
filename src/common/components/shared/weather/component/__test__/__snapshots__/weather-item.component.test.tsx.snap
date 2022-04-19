@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WeatherItem /> renders weather item and matches the snapshot when given valid weather 1`] = `
+<div
+  class="weather-item"
+>
+  <div
+    class="weather-item__day"
+  >
+    Tue
+  </div>
+  <reactcomponent />
+  <div
+    class="weather-item__forecast"
+  >
+    Sunny
+  </div>
+  <span
+    class="weather-item__degree"
+  >
+    <span
+      class="temperature"
+    >
+      33
+      <sup>
+        °
+      </sup>
+    </span>
+    <small>
+       / 
+    </small>
+    <span
+      class="temperature"
+    >
+      25
+      <sup>
+        °
+      </sup>
+    </span>
+  </span>
+</div>
+`;

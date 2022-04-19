@@ -1,12 +1,12 @@
 import { get } from 'lodash-es';
 
-import { createSelector, combineSelectors } from '../../common/redux';
+import { createSelector, combineSelectors } from '../../common/redux/selector';
 import { tempUnitSelector } from '../../common/redux/service/app/';
 
 import { HOME_MODULE } from './home.constant';
 
 interface IState {
-  [HOME_MODULE]?: {
+  [HOME_MODULE]: {
     loading: boolean;
     weather: any;
     dailyForecast: any;

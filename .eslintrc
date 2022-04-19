@@ -5,9 +5,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "react-hooks", "import", "redux-saga"],
-  "plugins": ["react-hooks", "import", "redux-saga"],
   "extends": ["plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:redux-saga/recommended"],
-  "extends": ["plugin:react/recommended", "plugin:redux-saga/recommended"],
   "rules": {
     "react/jsx-uses-react": 0,
     "react/react-in-jsx-scope": 0,

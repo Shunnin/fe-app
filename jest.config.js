@@ -4,10 +4,21 @@ module.exports = {
   testEnvironment: 'node',
   testRegex: '__test__/.*\\.test\\.[jt]sx?$',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+  collectCoverageFrom: [
+    'src/common/**/*.{ts,tsx}',
+    'src/pages/**/*.{ts,tsx}',
+    '!src/**/index.{ts,tsx}',
+    '!src/**/*.spec.{ts,tsx}',
+    '!src/**/*.test.{ts,tsx}',
+  ],
+  setupFilesAfterEnv: ['<rootDir>/config/jest/setup-tests.ts'],
   moduleNameMapper: {
     '^lodash-es$': 'lodash',
-    '^.+\\.(css|less|scss|style)$': 'identity-obj-proxy',
+    '^.+\\.(css|less|scss|style|svg|png|jpg)$': 'identity-obj-proxy',
+  },
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/config/jest/babel-transform.ts',
   },
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
+  resetMocks: true,
 };

@@ -2,7 +2,7 @@ import { FC, memo, useEffect, useRef, useState, useCallback, ChangeEvent } from 
 import { DebounceInput } from 'react-debounce-input';
 import { slice, map, isEmpty, split } from 'lodash-es';
 
-import { INT_ZERO, DEFAULT_DEBOUNCE_TIME, EMPTY_FUNC } from '../../../utility';
+import { INT_ZERO, DEFAULT_DEBOUNCE_TIME, EMPTY_FUNC, IFunction } from '../../../utility';
 import { SearchIcon } from '../icon';
 
 import { useClickOutside } from '../../../hooks';
@@ -13,8 +13,8 @@ const MAX_SUGGESTION_ITEMS = 6;
 
 interface ISuggestionItemProps {
   label: string;
-  onClickSuggestion: Function;
-  setShowSuggestions: Function;
+  onClickSuggestion: IFunction;
+  setShowSuggestions: IFunction;
   suggestionRef: any;
 }
 const SuggestionItem: FC<ISuggestionItemProps> = ({ label, onClickSuggestion, setShowSuggestions, suggestionRef }) => {
@@ -36,12 +36,12 @@ interface ISuggestionListProps {
   suggestions: string[];
   maxSuggestItem: number;
   showSuggestions: boolean;
-  setShowSuggestions: Function;
-  onClickSuggestion: Function;
+  setShowSuggestions: IFunction;
+  onClickSuggestion: IFunction;
 }
 
 const SuggestionList: FC<ISuggestionListProps> = memo(
-  ({ maxSuggestItem, showSuggestions, suggestions, setShowSuggestions, onClickSuggestion = EMPTY_FUNC }) => {
+  ({ maxSuggestItem, showSuggestions, suggestions, setShowSuggestions, onClickSuggestion }) => {
     const suggestionRef = useRef(null);
 
     useClickOutside(suggestionRef, () => setShowSuggestions(false));
@@ -73,8 +73,8 @@ interface ISearchBoxProps {
   placeholder?: string;
   suggestions: string[];
   maxSuggestItem?: number;
-  onClickSearch: Function;
-  onClickSuggestion: Function;
+  onClickSearch?: IFunction;
+  onClickSuggestion?: IFunction;
 }
 
 export const SearchBox: FC<ISearchBoxProps> = ({
@@ -86,11 +86,15 @@ export const SearchBox: FC<ISearchBoxProps> = ({
 }) => {
   const [optionSuggestions, setOptionSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [searchKeyword, setSearchKeyword] = useState('');
 
-  useEffect(() => {
-    searchKeyword && onClickSearch(searchKeyword);
-  }, [searchKeyword]);
+  const handleSearchInputChanged = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const keyword = event.target.value;
+
+      onClickSearch(keyword);
+    },
+    [onClickSearch],
+  );
 
   useEffect(() => {
     const ableShowSuggestions = !isEmpty(suggestions);
@@ -98,13 +102,6 @@ export const SearchBox: FC<ISearchBoxProps> = ({
     setShowSuggestions(ableShowSuggestions);
     setOptionSuggestions(suggestions);
   }, [suggestions]);
-
-  const handleSearchInputChanged = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setSearchKeyword(event.target.value);
-    },
-    [setSearchKeyword],
-  );
 
   return (
     <div className="search-box">

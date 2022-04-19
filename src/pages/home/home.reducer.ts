@@ -33,7 +33,7 @@ export const homeReducer = (state = initialState, action: WeatherActions) => {
         loading: false,
         weather: {},
         dailyForecast: {},
-        error: error,
+        error,
       };
 
     case GET_DAILY_FORECAST.REQUEST:

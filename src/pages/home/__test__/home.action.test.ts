@@ -16,7 +16,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_CURRENT_WEATHER.REQUEST,
-          payload: payload,
+          payload,
         };
 
         const action = getCurrentWeather.request(payload);
@@ -32,7 +32,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_CURRENT_WEATHER.SUCCESS,
-          response: response,
+          response,
         };
 
         const action = getCurrentWeather.success(response);
@@ -48,7 +48,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_CURRENT_WEATHER.ERROR,
-          error: error,
+          error,
         };
 
         const action = getCurrentWeather.error(error);
@@ -66,7 +66,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_DAILY_FORECAST.REQUEST,
-          payload: payload,
+          payload,
         };
 
         const action = getDailyForecast.request(payload);
@@ -82,7 +82,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_DAILY_FORECAST.SUCCESS,
-          response: response,
+          response,
         };
 
         const action = getDailyForecast.success(response);
@@ -98,7 +98,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_DAILY_FORECAST.ERROR,
-          error: error,
+          error,
         };
 
         const action = getDailyForecast.error(error);
@@ -116,7 +116,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_LOCATION.REQUEST,
-          payload: payload,
+          payload,
         };
 
         const action = getLocation.request(payload);
@@ -132,7 +132,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_LOCATION.SUCCESS,
-          response: response,
+          response,
         };
 
         const action = getLocation.success(response);
@@ -148,7 +148,7 @@ describe('Home Action', () => {
         };
         const expectedAction = {
           type: GET_LOCATION.ERROR,
-          error: error,
+          error,
         };
 
         const action = getLocation.error(error);

@@ -8,7 +8,7 @@ import './assets/style/application.scss';
 
 const history: History = createBrowserHistory();
 const container = document.getElementById('app');
-const root = createRoot(container!);
+const root = createRoot(container);
 const appStore = store.create({ history });
 
 root.render(

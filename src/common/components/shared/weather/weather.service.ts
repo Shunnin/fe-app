@@ -4,7 +4,7 @@ import { WeatherData, DailyForecastData } from '../../../../models';
 import { INT_ZERO } from '../../../utility/constant';
 import { kelvinToCelsius, kphSpeed, getSevenDaysInWeek } from '../../../utility';
 
-export const composeWeatherData = (data: any): {} | WeatherData => {
+export const composeWeatherData = (data: any): Record<string, unknown> | WeatherData => {
   if (isEmpty(data)) {
     return {};
   }

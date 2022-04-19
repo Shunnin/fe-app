@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders and matches the snapshot 1`] = `
+<a
+  class="header clickable"
+  href="/"
+>
+  <h1
+    class="header__title"
+  >
+    Welcome, baby
+  </h1>
+</a>
+`;

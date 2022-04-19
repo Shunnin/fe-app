@@ -3,7 +3,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { isEmpty } from 'lodash-es';
 
 import { WeatherData } from '../../../../../../models';
-import { EMPTY_FUNC, TEMP_UNIT, TEMP_UNIT_MAPPING_LABEL, TEMP_UNIT_VALUE, kmToMile } from '../../../../../utility';
+import { TEMP_UNIT, TEMP_UNIT_MAPPING_LABEL, TEMP_UNIT_VALUE, kmToMile, IFunction } from '../../../../../utility';
 import { ToggleSwitch } from '../../../../core/toggle-switch';
 import { HighIcon, HumidityIcon, LowIcon, PressureIcon, WindIcon } from '../../../../core/icon';
 
@@ -33,13 +33,15 @@ const WeatherCardStatus: FC<IWeatherCardStatusProps> = ({ weatherCode, name, tem
 };
 
 interface IWeatherCardInfoProps {
-  weather: WeatherData | {};
+  weather: WeatherData | Record<string, unknown>;
   degreeType: string;
 }
 
 const WeatherCardInfo: FC<IWeatherCardInfoProps> = ({ weather, degreeType }) => {
-  const { tempDetails: { feelsLike, tempMax, tempMin, humidity, pressure } = {}, wind: { speed } = {} } =
-    weather as WeatherData;
+  const {
+    tempDetails: { feelsLike, tempMax, tempMin, humidity, pressure },
+    wind: { speed },
+  } = weather as WeatherData;
 
   return (
     <div className="weather-card__info">
@@ -95,41 +97,45 @@ const WeatherCardInfo: FC<IWeatherCardInfoProps> = ({ weather, degreeType }) => 
 };
 
 interface IWeatherCardProps {
-  weather: WeatherData | {};
+  weather: WeatherData | Record<string, unknown>;
   degreeType: string;
-  onClickChangeTempUnit: Function;
+  onClickChangeTempUnit: IFunction;
 }
 
-export const WeatherCard: FC<IWeatherCardProps> = memo(
-  ({ weather, degreeType, onClickChangeTempUnit = EMPTY_FUNC }) => {
-    const intl = useIntl();
-    const { name, id, description, tempDetails: { temp } = {} } = weather as WeatherData;
+export const WeatherCard: FC<IWeatherCardProps> = memo(({ weather, degreeType, onClickChangeTempUnit }) => {
+  const intl = useIntl();
 
-    if (isEmpty(weather)) {
-      return <></>;
-    }
+  if (isEmpty(weather)) {
+    return <></>;
+  }
 
-    return (
-      <div className="weather-card">
-        <div className="flex space-between">
-          <div className="weather-card__title">
-            <FormattedMessage defaultMessage="Current Weather" />
-          </div>
-          <div className="weather-card__toggle">
-            <ToggleSwitch
-              name={intl.formatMessage({ defaultMessage: 'Temperature Unit' })}
-              defaultValue={TEMP_UNIT_VALUE.CELSIUS}
-              mappingLabel={TEMP_UNIT_MAPPING_LABEL}
-              onClick={onClickChangeTempUnit}
-            />
-          </div>
+  const {
+    name,
+    id,
+    description,
+    tempDetails: { temp },
+  } = weather as WeatherData;
+
+  return (
+    <div className="weather-card">
+      <div className="flex space-between">
+        <div className="weather-card__title">
+          <FormattedMessage defaultMessage="Current Weather" />
         </div>
-        <div className="weather-card__content">
-          <WeatherCardStatus weatherCode={id} name={name} temp={temp} description={description} />
-          <WeatherCardInfo weather={weather} degreeType={degreeType} />
+        <div className="weather-card__toggle">
+          <ToggleSwitch
+            name={intl.formatMessage({ defaultMessage: 'Temperature Unit' })}
+            defaultValue={TEMP_UNIT_VALUE.CELSIUS}
+            mappingLabel={TEMP_UNIT_MAPPING_LABEL}
+            onClick={onClickChangeTempUnit}
+          />
         </div>
       </div>
-    );
-  },
-);
+      <div className="weather-card__content">
+        <WeatherCardStatus weatherCode={id} name={name} temp={temp} description={description} />
+        <WeatherCardInfo weather={weather} degreeType={degreeType} />
+      </div>
+    </div>
+  );
+});
 WeatherCard.displayName = 'WeatherCard';

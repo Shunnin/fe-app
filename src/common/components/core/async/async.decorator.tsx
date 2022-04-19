@@ -1,5 +1,4 @@
 import { Component as ReactComponent, ElementType } from 'react';
-import { noop } from 'lodash-es';
 
 import { retry } from '../../../utility';
 
@@ -19,7 +18,7 @@ const RETRY_INTERVAL = 3000;
 export const asyncComponent = options => {
   const { component, store, initialProps = {}, dependencies = {}, moduleName, clearState = true } = options;
 
-  return class AsyncComponent extends ReactComponent<{}, AsyncComponentState> {
+  return class AsyncComponent extends ReactComponent<Record<string, unknown>, AsyncComponentState> {
     private moduleNames: string[];
 
     constructor(props) {
