@@ -1,21 +1,16 @@
 import { useEffect, FC, useState, memo, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import { isEmpty, map } from 'lodash-es';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 import { DailyForecastData } from '../../models';
 import { WeatherCard, WeatherItem, composeWeatherData, composeDailyForecastData } from '../../common/components/shared';
 import { Header, SearchBox, Loading } from '../../common/components/core';
-import { changeTempUnit } from '../../common/redux/service/app/';
+import { changeTempUnit as changeTempUnitAction } from '../../common/redux/service/app/';
+import { pipe } from '../../common/utility';
 
 import { getCurrentWeather, getDailyForecast, getLocation } from './home.action';
-import {
-  getLoadingSelector,
-  getWeatherSelector,
-  getDailyForecastSelector,
-  getLocationsSelector,
-  getErrorSelector,
-} from './home.selector';
+import { homeSelectors } from './home.selector';
 import { homeReducer } from './home.reducer';
 import { homeSaga } from './home.saga';
 import './home.style';
@@ -60,68 +55,70 @@ const DailyForeCast: FC<IDailyForecastProps> = memo(({ dailyForeCast }) => {
 });
 DailyForeCast.displayName = 'DailyForeCast';
 
-const Home: FC = () => {
+interface IHomeProps {
+  error: any;
+  loading: boolean;
+  weather: any;
+  dailyForecast: any;
+  locations: string[];
+  degreeType: string;
+  getCurrentWeatherRequest: Function;
+  getDailyForecastRequest: Function;
+  getLocationRequest: Function;
+  changeTempUnit: Function;
+}
+
+const Home: FC<IHomeProps> = ({
+  // Props
+  error,
+  loading,
+  weather,
+  dailyForecast,
+  locations,
+  degreeType,
+  // Actions
+  getCurrentWeatherRequest,
+  getDailyForecastRequest,
+  getLocationRequest,
+  changeTempUnit,
+}) => {
   const intl = useIntl();
-  const dispatch = useDispatch();
   const [queryParams, setQueryParams] = useState(null);
-  const [locations, setLocations] = useState<string[]>([]);
-  const [weather, setWeather] = useState({});
-  const [dailyForeCast, setDailyForeCast] = useState([]);
+  const [composedWeather, setComposedWeather] = useState({});
+  const [composedDailyForeCast, setComposedDailyForeCast] = useState([]);
 
-  const { degreeType } = useSelector((state: any) => ({
-    degreeType: state?.appModule?.tempUnit,
-  }));
+  const handleChangeTempUnit = useCallback(value => changeTempUnit(value), [changeTempUnit]);
 
-  const errors = useSelector(getErrorSelector);
-  const loading = useSelector(getLoadingSelector);
-  const weatherSel = useSelector(getWeatherSelector);
-  const dailyForecastSel = useSelector(getDailyForecastSelector);
-  const locationsSel = useSelector(getLocationsSelector);
+  const handleClickSearch = useCallback(value => getLocationRequest(value), [getLocationRequest]);
 
-  const handleChangeTempUnit = useCallback(value => {
-    dispatch(changeTempUnit(value));
-  }, []);
-
-  const handleClickSearch = useCallback(
-    value => {
-      dispatch(getLocation.request(value));
-    },
-    [getLocation],
-  );
-
-  const handleClickSuggestion = useCallback(
-    value => {
-      setQueryParams({ q: value });
-    },
-    [setQueryParams],
-  );
+  const handleClickSuggestion = useCallback(value => setQueryParams({ q: value }), [setQueryParams]);
 
   useEffect(() => {
     if (!isEmpty(queryParams)) {
-      dispatch(getCurrentWeather.request(queryParams));
-      dispatch(getDailyForecast.request(queryParams));
+      getCurrentWeatherRequest(queryParams);
+      getDailyForecastRequest(queryParams);
     }
   }, [queryParams]);
 
   useEffect(() => {
-    if (!isEmpty(weatherSel)) {
-      const composedWeather = composeWeatherData(weatherSel);
+    if (isEmpty(weather)) {
+      setComposedWeather([]);
+    } else {
+      const result = composeWeatherData(weather);
 
-      setWeather(composedWeather);
+      setComposedWeather(result);
     }
-  }, [weatherSel]);
+  }, [weather]);
 
   useEffect(() => {
-    if (!isEmpty(dailyForecastSel)) {
-      const composeDailyForecast = composeDailyForecastData(dailyForecastSel);
+    if (isEmpty(dailyForecast)) {
+      setComposedDailyForeCast([]);
+    } else {
+      const result = composeDailyForecastData(dailyForecast);
 
-      setDailyForeCast(composeDailyForecast);
+      setComposedDailyForeCast(result);
     }
-  }, [dailyForecastSel]);
-
-  useEffect(() => {
-    setLocations(locationsSel);
-  }, [locationsSel]);
+  }, [dailyForecast]);
 
   return (
     <>
@@ -135,10 +132,14 @@ const Home: FC = () => {
             onClickSearch={handleClickSearch}
             onClickSuggestion={handleClickSuggestion}
           />
-          {isEmpty(errors) ? (
+          {isEmpty(error) ? (
             <>
-              <WeatherCard weather={weather} degreeType={degreeType} onClickChangeTempUnit={handleChangeTempUnit} />
-              <DailyForeCast dailyForeCast={dailyForeCast} />
+              <WeatherCard
+                weather={composedWeather}
+                degreeType={degreeType}
+                onClickChangeTempUnit={handleChangeTempUnit}
+              />
+              <DailyForeCast dailyForeCast={composedDailyForeCast} />
             </>
           ) : (
             <div className="text-center">
@@ -151,7 +152,14 @@ const Home: FC = () => {
   );
 };
 
-export default Home;
+export default pipe(
+  connect(homeSelectors, {
+    getCurrentWeatherRequest: getCurrentWeather.request,
+    getDailyForecastRequest: getDailyForecast.request,
+    getLocationRequest: getLocation.request,
+    changeTempUnit: changeTempUnitAction,
+  }),
+)(Home);
 
 export const dependencies = {
   reducer: homeReducer,

@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router/immutable';
 import createSagaMiddleware from 'redux-saga';
 
-import { createReducer } from './reducer';
+import { createReducer } from '../reducer';
 
 export interface IStoreParams {
   history: History;
@@ -32,7 +32,7 @@ export class Store {
     return finalCreateStore(rootReducer, initialState);
   }
 
-  create<IStoreParams>({ reducers, sagas, history, initialState = {} }) {
+  create({ reducers, history, initialState = {} }: IStoreParams) {
     const sagaMiddleware = createSagaMiddleware();
     const rootReducer = createReducer(reducers);
 

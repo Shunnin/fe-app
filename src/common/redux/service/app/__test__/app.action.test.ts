@@ -6,7 +6,7 @@ describe('App action', () => {
       const payload = true;
       const expectedAction = {
         type: CHANGE_TEMP_UNIT,
-        payload: payload,
+        payload,
       };
 
       const action = changeTempUnit(payload);

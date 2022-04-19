@@ -1,65 +1,47 @@
-import { createSelector } from 'reselect';
+import { get } from 'lodash-es';
+
+import { createSelector, combineSelectors } from '../../common/redux';
+import { tempUnitSelector } from '../../common/redux/service/app/';
 
 import { HOME_MODULE } from './home.constant';
 
 interface IState {
-  homeModule?: {
+  [HOME_MODULE]?: {
     loading: boolean;
     weather: any;
     dailyForecast: any;
     locations: string[];
-    errors: string;
+    error: string;
   };
 }
 
-const getLoading = (state: IState) => state[HOME_MODULE].loading;
+const homeStateSelector = (state: IState) => state[HOME_MODULE];
 
-const getWeather = (state: IState) => state[HOME_MODULE].weather;
+export const weatherSelector = createSelector(homeStateSelector, moduleState => {
+  return get(moduleState, 'weather');
+});
 
-const getDailyForecast = (state: IState) => state[HOME_MODULE].dailyForecast;
+export const dailyForecastSelector = createSelector(homeStateSelector, moduleState => {
+  return get(moduleState, 'dailyForecast');
+});
 
-const getLocations = (state: IState) => state[HOME_MODULE].locations;
+export const locationsSelector = createSelector(homeStateSelector, moduleState => {
+  return get(moduleState, 'locations');
+});
 
-const getErrors = (state: IState) => state[HOME_MODULE].errors;
+export const loadingSelector = createSelector(homeStateSelector, moduleState => {
+  return get(moduleState, 'loading');
+});
 
-export const getWeatherSelector = createSelector(getWeather, weather => weather);
+export const errorSelector = createSelector(homeStateSelector, moduleState => {
+  return get(moduleState, 'error');
+});
 
-export const getDailyForecastSelector = createSelector(getDailyForecast, dailyForecast => dailyForecast);
-
-export const getLocationsSelector = createSelector(getLocations, (locations: string[]) => locations);
-
-export const getLoadingSelector = createSelector(getLoading, loading => loading);
-
-export const getErrorSelector = createSelector(getErrors, errors => errors);
-
-// import { createSelector, combineSelectors } from '../../common/redux';
-
-// const homeStateSelector = state => state.get(HOME_MODULE);
-
-// export const weatherSelector = createSelector(homeStateSelector, moduleState => {
-//   return moduleState.get('weather');
-// });
-
-// export const dailyForecastSelector = createSelector(homeStateSelector, moduleState => {
-//   return moduleState.get('dailyForecast');
-// });
-
-// export const locationsSelector = createSelector(homeStateSelector, moduleState => {
-//   return moduleState.get('locations');
-// });
-
-// export const loadingSelector = createSelector(homeStateSelector, moduleState => {
-//   return moduleState.get('loading');
-// });
-
-// export const errorsSelector = createSelector(homeStateSelector, moduleState => {
-//   return moduleState.get('errors');
-// });
-
-// export const homeSelector = combineSelectors({
-//   weather: getWeatherSelector,
-//   dailyForecast: getDailyForecastSelector,
-//   locations: getLocationsSelector,
-//   loading: getLoadingSelector,
-//   errors: getErrorSelector,
-// });
+export const homeSelectors = combineSelectors({
+  weather: weatherSelector,
+  dailyForecast: dailyForecastSelector,
+  locations: locationsSelector,
+  loading: loadingSelector,
+  error: errorSelector,
+  degreeType: tempUnitSelector,
+});
