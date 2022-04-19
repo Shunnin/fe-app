@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home Reducer handles the getCurrentWeather action returns empty weather and loading is false is false with execute action error 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": "Can not fetch the data",
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getCurrentWeather action returns loading state is true with execute action request 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": true,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getCurrentWeather action returns weather state and loading is false with execute action success 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {
+    "place": "ho chi minh",
+  },
+}
+`;
+
+exports[`Home Reducer handles the getDailyForecast action returns dailyForecast state and loading is false with execute action success 1`] = `
+Object {
+  "dailyForecast": Object {
+    "place": "ho chi minh",
+    "temp": 30,
+  },
+  "error": null,
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getDailyForecast action returns empty dailyForecast and loading is false is false with execute action error 1`] = `
+Object {
+  "dailyForecast": Array [],
+  "error": null,
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getDailyForecast action returns loading state is true with execute action request 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": true,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getLocation action returns empty locations with execute action error 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getLocation action returns locations state with execute action success 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": false,
+  "locations": Array [
+    "ho chi minh",
+  ],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer handles the getLocation action returns the initial state with execute action request 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;
+
+exports[`Home Reducer returns the initial state 1`] = `
+Object {
+  "dailyForecast": Object {},
+  "error": null,
+  "loading": false,
+  "locations": Array [],
+  "weather": Object {},
+}
+`;

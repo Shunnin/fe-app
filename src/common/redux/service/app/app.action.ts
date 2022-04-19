@@ -1,7 +1,7 @@
-import { CHANGE_TEMP_UNIT } from './app.action-type';
-import { IChangeTempUnit } from './app.type';
+import { createActionType, createActionCreator } from '../../action';
 
-export const changeTempUnit = (payload: boolean): IChangeTempUnit => ({
-  type: CHANGE_TEMP_UNIT,
-  payload,
-});
+import { APP_MODULE } from './app.constant';
+
+export const CHANGE_TEMP_UNIT = createActionType('CHANGE_TEMP_UNIT', APP_MODULE);
+
+export const changeTempUnit = createActionCreator(CHANGE_TEMP_UNIT, 'payload');

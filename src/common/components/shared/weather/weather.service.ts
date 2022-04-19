@@ -2,7 +2,7 @@ import { isEmpty, map } from 'lodash-es';
 
 import { WeatherData, DailyForecastData } from '../../../../models';
 import { INT_ZERO } from '../../../utility/constant';
-import { kelvinToCelsius, kphSpeed, getNextSevenDays } from '../../../utility';
+import { kelvinToCelsius, kphSpeed, getSevenDaysInWeek } from '../../../utility';
 
 export const composeWeatherData = (data: any): {} | WeatherData => {
   if (isEmpty(data)) {
@@ -38,7 +38,7 @@ export const composeWeatherData = (data: any): {} | WeatherData => {
 };
 
 export const composeDailyForecastData = (data: any): DailyForecastData[] => {
-  const next7Days = getNextSevenDays();
+  const sevenDaysInWeek = getSevenDaysInWeek();
   const { list } = data || {};
 
   if (isEmpty(list)) {
@@ -53,7 +53,7 @@ export const composeDailyForecastData = (data: any): DailyForecastData[] => {
     const { id, main: forecast } = weather[INT_ZERO];
 
     return {
-      day: next7Days[index],
+      day: sevenDaysInWeek[index],
       id,
       forecast,
       tempDetails: {

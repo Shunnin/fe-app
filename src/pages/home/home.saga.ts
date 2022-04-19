@@ -12,16 +12,15 @@ import {
 import { UrlUtil } from '../../common/utility';
 
 import {
-  getCurrentWeatherError,
-  getCurrentWeatherSuccess,
-  getDailyForecastSuccess,
-  getDailyForecastError,
-  getLocationSuccess,
-  getLocationError,
+  GET_CURRENT_WEATHER,
+  GET_DAILY_FORECAST,
+  GET_LOCATION,
+  getCurrentWeather,
+  getDailyForecast,
+  getLocation,
 } from './home.action';
-import { GET_CURRENT_WEATHER_REQUEST, GET_DAILY_FORECAST_REQUEST, GET_LOCATION_REQUEST } from './home.action-type';
 
-const getCurrentWeather = (value: any) => {
+const getCurrentWeatherApi = (value: any) => {
   const apiUrl = UrlUtil.buildQueryUrl(API_URL_GET_CURRENT_WEATHER, {
     ...value,
     appid: '20571ab45c74dc2a1897b60c5b8047a1',
@@ -30,7 +29,7 @@ const getCurrentWeather = (value: any) => {
   return axios.get(apiUrl);
 };
 
-const getDailyForecast = (value: any) => {
+const getDailyForecastApi = (value: any) => {
   const apiUrl = UrlUtil.buildQueryUrl(API_URL_GET_DAILY_FORECAST, {
     ...value,
     appid: '20571ab45c74dc2a1897b60c5b8047a1',
@@ -39,7 +38,7 @@ const getDailyForecast = (value: any) => {
   return axios.get(apiUrl);
 };
 
-const searchLocation = (value: any) => {
+const searchLocationApi = (value: any) => {
   const data = JSON.stringify({
     query: value,
     type: 'city',
@@ -60,27 +59,27 @@ export interface ResponseGenerator {
 
 const getCurrentWeatherSaga = function* (action) {
   try {
-    const response: ResponseGenerator = yield call(getCurrentWeather, action.payload);
+    const response: ResponseGenerator = yield call(getCurrentWeatherApi, action.payload);
 
-    yield put(getCurrentWeatherSuccess(response.data));
+    yield put(getCurrentWeather.success(response.data));
   } catch (e) {
-    yield put(getCurrentWeatherError(e));
+    yield put(getCurrentWeather.error(e));
   }
 };
 
 const getDailyForecastSaga = function* (action) {
   try {
-    const response: ResponseGenerator = yield call(getDailyForecast, action.payload);
+    const response: ResponseGenerator = yield call(getDailyForecastApi, action.payload);
 
-    yield put(getDailyForecastSuccess(response.data));
+    yield put(getDailyForecast.success(response.data));
   } catch (e) {
-    yield put(getDailyForecastError());
+    yield put(getDailyForecast.error());
   }
 };
 
 const getLocationSaga = function* (action) {
   try {
-    const response: ResponseGenerator = yield call(searchLocation, action.payload);
+    const response: ResponseGenerator = yield call(searchLocationApi, action.payload);
     const { data: { hits } = {} } = response;
     const locations = reduce(
       hits,
@@ -94,18 +93,18 @@ const getLocationSaga = function* (action) {
       [],
     );
 
-    yield put(getLocationSuccess(locations));
+    yield put(getLocation.success(locations));
   } catch (e) {
-    yield put(getLocationError());
+    yield put(getLocation.error());
   }
 };
 
 export const homeSaga = function* () {
   try {
     yield all([
-      takeLatest(GET_CURRENT_WEATHER_REQUEST, getCurrentWeatherSaga),
-      takeLatest(GET_DAILY_FORECAST_REQUEST, getDailyForecastSaga),
-      takeLatest(GET_LOCATION_REQUEST, getLocationSaga),
+      takeLatest(GET_CURRENT_WEATHER.REQUEST, getCurrentWeatherSaga),
+      takeLatest(GET_DAILY_FORECAST.REQUEST, getDailyForecastSaga),
+      takeLatest(GET_LOCATION.REQUEST, getLocationSaga),
     ]);
   } catch (e) {
     // ...

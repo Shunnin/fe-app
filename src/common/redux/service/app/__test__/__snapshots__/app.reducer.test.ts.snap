@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Reducer handles the changeTempUnit action returns tempUnit with given payload is false 1`] = `
+Object {
+  "tempUnit": "FAHRENHEIT",
+}
+`;
+
+exports[`App Reducer handles the changeTempUnit action returns tempUnit with given payload is true 1`] = `
+Object {
+  "tempUnit": "CELSIUS",
+}
+`;
+
+exports[`App Reducer returns the initial state 1`] = `
+Object {
+  "tempUnit": "CELSIUS",
+}
+`;

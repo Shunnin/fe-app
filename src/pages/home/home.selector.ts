@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { HOME_MODULE } from './home.reducer';
+import { HOME_MODULE } from './home.constant';
 
 interface IState {
   homeModule?: {

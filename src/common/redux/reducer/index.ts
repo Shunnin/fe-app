@@ -1,6 +1,13 @@
 import { combineReducers } from 'redux';
 
-import { APP_MODULE, appReducer } from '../service/app/app.reducer';
+import { APP_MODULE, appReducer } from '../service/app/';
+
+export type IDefaultAction = {
+  type: string;
+  payload?: any;
+  response?: any;
+  error?: any;
+};
 
 export const createReducer = (reducers: any) => {
   return combineReducers({

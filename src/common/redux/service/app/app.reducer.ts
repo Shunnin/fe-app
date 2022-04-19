@@ -1,7 +1,7 @@
 import { TEMP_UNIT, TEMP_UNIT_TOGGLE_VALUE } from '../../../utility';
 
-import { CHANGE_TEMP_UNIT } from './app.action-type';
-import { AppActions, IAppState } from './app.type';
+import { CHANGE_TEMP_UNIT } from './app.action';
+import { AppActions, IAppState } from './app.constant';
 
 const initialState: IAppState = {
   tempUnit: TEMP_UNIT.CELSIUS,
@@ -13,16 +13,14 @@ const handleChangeTempUnit = (state: IAppState, payload: boolean) => {
   return { ...state, tempUnit };
 };
 
-export const APP_MODULE = 'appModule';
-
 export const appReducer = (state = initialState, action: AppActions) => {
-  switch (action.type) {
+  const { type, payload } = action;
+
+  switch (type) {
     case CHANGE_TEMP_UNIT:
-      return handleChangeTempUnit(state, action.payload);
+      return handleChangeTempUnit(state, payload);
 
     default:
-      return {
-        ...state,
-      };
+      return { ...state };
   }
 };

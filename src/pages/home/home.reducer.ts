@@ -1,78 +1,68 @@
-import {
-  GET_CURRENT_WEATHER_REQUEST,
-  GET_CURRENT_WEATHER_SUCCESS,
-  GET_CURRENT_WEATHER_ERROR,
-  GET_DAILY_FORECAST_REQUEST,
-  GET_DAILY_FORECAST_SUCCESS,
-  GET_DAILY_FORECAST_ERROR,
-  GET_LOCATION_SUCCESS,
-  GET_LOCATION_ERROR,
-} from './home.action-type';
-
-import { WeatherActions, IWeatherState } from './home.type';
+import { WeatherActions, IWeatherState } from './home.constant';
+import { GET_CURRENT_WEATHER, GET_DAILY_FORECAST, GET_LOCATION } from './home.action';
 
 const initialState: IWeatherState = {
   loading: false,
   weather: {},
   dailyForecast: {},
   locations: [],
-  errors: null,
+  error: null,
 };
 
-export const HOME_MODULE = 'homeModule';
-
 export const homeReducer = (state = initialState, action: WeatherActions) => {
-  switch (action.type) {
-    case GET_CURRENT_WEATHER_REQUEST:
+  const { type, response, error } = action;
+
+  switch (type) {
+    case GET_CURRENT_WEATHER.REQUEST:
       return {
         ...state,
         loading: true,
       };
 
-    case GET_CURRENT_WEATHER_SUCCESS:
+    case GET_CURRENT_WEATHER.SUCCESS:
       return {
         ...state,
         loading: false,
-        weather: action.payload,
-        errors: null,
+        weather: response,
+        error: null,
       };
 
-    case GET_CURRENT_WEATHER_ERROR:
+    case GET_CURRENT_WEATHER.ERROR:
       return {
         ...state,
         loading: false,
         weather: {},
         dailyForecast: {},
-        errors: action.payload,
+        error: error,
       };
 
-    case GET_DAILY_FORECAST_REQUEST:
+    case GET_DAILY_FORECAST.REQUEST:
       return {
         ...state,
         loading: true,
       };
 
-    case GET_DAILY_FORECAST_SUCCESS:
+    case GET_DAILY_FORECAST.SUCCESS:
       return {
         ...state,
         loading: false,
-        dailyForecast: action.payload,
+        dailyForecast: response,
       };
 
-    case GET_DAILY_FORECAST_ERROR:
+    case GET_DAILY_FORECAST.ERROR:
       return {
         ...state,
         loading: false,
         dailyForecast: [],
       };
 
-    case GET_LOCATION_SUCCESS:
+    case GET_LOCATION.SUCCESS:
       return {
         ...state,
-        locations: action.payload,
+        locations: response,
       };
 
-    case GET_LOCATION_ERROR:
+    case GET_LOCATION.ERROR:
       return {
         ...state,
         locations: [],

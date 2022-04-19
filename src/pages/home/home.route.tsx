@@ -2,7 +2,7 @@ import { store } from '../../store';
 import { asyncComponent } from '../../common/components/core';
 import { URL_HOME } from '../../common/utility/constant';
 
-import { HOME_MODULE } from './home.reducer';
+import { HOME_MODULE } from './home.constant';
 
 const component = asyncComponent({
   component: () =>

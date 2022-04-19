@@ -6,9 +6,9 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { DailyForecastData } from '../../models';
 import { WeatherCard, WeatherItem, composeWeatherData, composeDailyForecastData } from '../../common/components/shared';
 import { Header, SearchBox, Loading } from '../../common/components/core';
+import { changeTempUnit } from '../../common/redux/service/app/';
 
-import { changeTempUnit } from '../../common/redux/service/app/app.action';
-import { getCurrentWeatherRequest, getDailyForecastRequest, getLocationRequest } from './home.action';
+import { getCurrentWeather, getDailyForecast, getLocation } from './home.action';
 import {
   getLoadingSelector,
   getWeatherSelector,
@@ -16,7 +16,6 @@ import {
   getLocationsSelector,
   getErrorSelector,
 } from './home.selector';
-
 import { homeReducer } from './home.reducer';
 import { homeSaga } from './home.saga';
 import './home.style';
@@ -85,9 +84,9 @@ const Home: FC = () => {
 
   const handleClickSearch = useCallback(
     value => {
-      dispatch(getLocationRequest(value));
+      dispatch(getLocation.request(value));
     },
-    [getLocationRequest],
+    [getLocation],
   );
 
   const handleClickSuggestion = useCallback(
@@ -99,8 +98,8 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (!isEmpty(queryParams)) {
-      dispatch(getCurrentWeatherRequest(queryParams));
-      dispatch(getDailyForecastRequest(queryParams));
+      dispatch(getCurrentWeather.request(queryParams));
+      dispatch(getDailyForecast.request(queryParams));
     }
   }, [queryParams]);
 

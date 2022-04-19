@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ToggleSwitch /> renders and matches the snapshot with defaultValue is false 1`] = `
+<div
+  aria-label="Test toggle switch"
+  class="toggle-switch clickable"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="toggle-switch__off"
+  />
+  <div
+    class="toggle-switch__indicator"
+  />
+</div>
+`;
+
+exports[`<ToggleSwitch /> renders and matches the snapshot with defaultValue is true 1`] = `
+<div
+  aria-label="Test toggle switch"
+  class="toggle-switch clickable"
+  role="button"
+  tabindex="0"
+>
+  <span
+    class="toggle-switch__on"
+  />
+  <div
+    class="toggle-switch__indicator is-toggled"
+  />
+</div>
+`;
