@@ -6,7 +6,7 @@
   "scripts": {
     "build": "better-npm-run build",
     "dev": "better-npm-run dev",
-    "start": "better-npm-run start",
+    "start": "npm run build && node server/index.ts",
     "lint": "eslint -c .eslintrc src --quiet",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.scss|*.json)\"",
@@ -29,12 +29,6 @@
     },
     "build": {
       "command": "webpack --progress --config config/webpack/prod.ts",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "start": {
-      "command": "npm run build && node server/index.ts",
       "env": {
         "NODE_ENV": "production"
       }
