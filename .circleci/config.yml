@@ -7,6 +7,14 @@ executors:
     docker:
       - image: circleci/node:14
 
+commands:
+  install_dependencies:
+    description: Install Dependencies
+    steps:
+      - run:
+          name: Install Dependencies
+          command: npm ci
+
 jobs:
   build:
     executor: default
@@ -14,13 +22,42 @@ jobs:
       - checkout
       - restore_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
-      - run:
-          name: Install Dependencies
-          command: npm ci
+      - install_dependencies
       - save_cache:
           key: npm-cache-v1-{{ checksum "package-lock.json" }}
           paths:
             - /home/circleci/.npm
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - ./repo
+
+  linter:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
       - run:
-          name: Run Linter
-          command: npm run lint
+          name: Check Linter
+          command: npm run lint && npm run prettier
+
+  test:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Run Test
+          command: npm run test
+
+workflows:
+  version: 2
+  integration:
+    jobs:
+      - build
+      - linter:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
