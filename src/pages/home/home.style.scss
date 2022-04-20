@@ -3,33 +3,33 @@
 .weather-section {
   margin-bottom: $b-space-2x;
 
-	& &__forecast {
-		margin-top: $b-space-2x;
-		background-color: $c-wh;
-		opacity: 0.75;
-		box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-		border-radius: $b-border-radius-md;
-		padding: $b-space-2x;
-		overflow: hidden;
+  & &__forecast {
+    margin-top: $b-space-2x;
+    background-color: $c-wh;
+    opacity: 0.75;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: $b-border-radius-md;
+    padding: $b-space-2x;
+    overflow: hidden;
 
     &-title {
       border-bottom: 1px solid $c-gr3;
       padding-bottom: 1.5 * $b-space;
     }
 
-		&-items {
-			display: flex;
-			justify-content: space-between;
-			overflow-x: auto;
+    &-items {
+      display: flex;
+      justify-content: space-between;
+      overflow-x: auto;
       margin-top: $b-space;
 
-			&:last-child {
-				margin-right: 0;
-			}
-		}
+      &:last-child {
+        margin-right: 0;
+      }
+    }
 
     @include respondto(xs, sm) {
-			padding: $b-space;
+      padding: $b-space;
 
       &-title {
         padding-bottom: $b-space-s;
@@ -38,8 +38,8 @@
       &-items {
         margin-top: $b-space-s;
       }
-		}
-	}
+    }
+  }
 
   @include respondto(xs) {
     .weather-card {

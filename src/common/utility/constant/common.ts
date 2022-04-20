@@ -21,3 +21,5 @@ export const EMPTY_FUNC = noop;
 export type IFunction = ReturnType<typeof EMPTY_FUNC>;
 
 export const DEFAULT_LOCALE = 'en';
+
+export const WEATHER_API_KEY = process.env.REACT_APP_WEATHER_API_KEY || '20571ab45c74dc2a1897b60c5b8047a1';

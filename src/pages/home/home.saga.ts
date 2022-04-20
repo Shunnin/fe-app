@@ -8,6 +8,7 @@ import {
   API_URL_GET_CURRENT_WEATHER,
   API_URL_GET_DAILY_FORECAST,
   API_URL_SEARCH_LOCATION,
+  WEATHER_API_KEY,
 } from '../../common/utility/constant';
 import { UrlUtil } from '../../common/utility';
 
@@ -23,7 +24,7 @@ import {
 const getCurrentWeatherApi = (value: any) => {
   const apiUrl = UrlUtil.buildQueryUrl(API_URL_GET_CURRENT_WEATHER, {
     ...value,
-    appid: '20571ab45c74dc2a1897b60c5b8047a1',
+    appid: WEATHER_API_KEY,
   });
 
   return axios.get(apiUrl);
@@ -32,7 +33,7 @@ const getCurrentWeatherApi = (value: any) => {
 const getDailyForecastApi = (value: any) => {
   const apiUrl = UrlUtil.buildQueryUrl(API_URL_GET_DAILY_FORECAST, {
     ...value,
-    appid: '20571ab45c74dc2a1897b60c5b8047a1',
+    appid: WEATHER_API_KEY,
   });
 
   return axios.get(apiUrl);

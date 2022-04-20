@@ -13,8 +13,10 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-	background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center center fixed, linear-gradient($c-c6 0%, $c-c3 100%) no-repeat center center fixed;
-	background-size: cover;
+  background: url(https://res.cloudinary.com/dxfq3iotg/image/upload/v1557323760/weather.svg) no-repeat center center
+      fixed,
+    linear-gradient($c-c6 0%, $c-c3 100%) no-repeat center center fixed;
+  background-size: cover;
 }
 
 #app {

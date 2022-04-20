@@ -1,6 +1,10 @@
 const path = require('path');
 const dirRoot = path.resolve(__dirname, '..', '..');
 
+const join = (...args) => {
+  return path.join(...args);
+};
+
 const root = (...args) => {
   return path.join.apply(path, [dirRoot].concat(args));
 };
@@ -18,6 +22,7 @@ const isDev = () => {
 };
 
 const helper = {
+  join,
   root,
   isProd,
   isDev,

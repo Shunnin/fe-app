@@ -13,7 +13,6 @@
   transition: $transition;
 }
 
-
 /* ----- Center-align a block level element ----- */
 
 @mixin center-block() {
@@ -23,12 +22,12 @@
   float: none !important;
 }
 
-
 /* ----- Clearfix ----- */
 
 @mixin clearfix() {
-  &:before, &:after {
-    content: " ";
+  &:before,
+  &:after {
+    content: ' ';
     display: table;
   }
   &:after {

@@ -1,7 +1,7 @@
 @import 'style/foundation/config';
 
 .toggle-switch {
-	position: relative;
+  position: relative;
   display: inline-block;
   width: 50px;
   height: 20px;
@@ -38,19 +38,19 @@
     padding-left: $b-space;
   }
 
-	& &__indicator {
-		position: absolute;
-		height: 16px;
-		width: 18px;
-		left: 2px;
-		top: 2px;
-		background-color: $c-wh;
-		transition: 0.4s;
+  & &__indicator {
+    position: absolute;
+    height: 16px;
+    width: 18px;
+    left: 2px;
+    top: 2px;
+    background-color: $c-wh;
+    transition: 0.4s;
     transform: translateX(0px);
-		border-radius: 44px;
+    border-radius: 44px;
 
     &.is-toggled {
       transform: translateX(28px);
     }
-	}
+  }
 }
