@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Weather Service composeDailyForecastData() return correct weather info when provide valid data 1`] = `
+Array [
+  Object {
+    "day": "Thu",
+    "forecast": "Rain",
+    "id": 500,
+    "tempDetails": Object {
+      "tempMax": 36,
+      "tempMin": 27,
+    },
+  },
+  Object {
+    "day": "Fri",
+    "forecast": "Rain",
+    "id": 500,
+    "tempDetails": Object {
+      "tempMax": 36,
+      "tempMin": 26,
+    },
+  },
+  Object {
+    "day": "Sat",
+    "forecast": "Rain",
+    "id": 500,
+    "tempDetails": Object {
+      "tempMax": 36,
+      "tempMin": 26,
+    },
+  },
+]
+`;

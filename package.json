@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "better-npm-run build",
+    "build": "webpack --progress --config config/webpack/prod.ts",
     "dev": "better-npm-run dev",
     "start": "npm run build && node server/index.ts",
     "lint": "eslint -c .eslintrc src --quiet",

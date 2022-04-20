@@ -140,9 +140,8 @@ describe('Weather Service', () => {
 
       const result = composeDailyForecastData(validData);
 
-      expect(result).toEqual([
+      expect(result).toMatchSnapshot([
         {
-          day: 'Wed',
           forecast: 'Rain',
           id: 500,
           tempDetails: {
@@ -151,7 +150,6 @@ describe('Weather Service', () => {
           },
         },
         {
-          day: 'Thu',
           forecast: 'Rain',
           id: 500,
           tempDetails: {
@@ -160,7 +158,6 @@ describe('Weather Service', () => {
           },
         },
         {
-          day: 'Fri',
           forecast: 'Rain',
           id: 500,
           tempDetails: {
