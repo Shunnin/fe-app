@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress --config config/webpack/prod.ts",
+    "start": "node server/index.ts",
+    "build": "better-npm-run build",
     "dev": "better-npm-run dev",
-    "start": "npm run build && node server/index.ts",
+    "prod": "better-npm-run prod",
     "lint": "eslint -c .eslintrc src --quiet",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.scss|*.json)\"",
@@ -29,6 +30,12 @@
     },
     "build": {
       "command": "webpack --progress --config config/webpack/prod.ts",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "prod": {
+      "command": "npm run build && node server/index.ts",
       "env": {
         "NODE_ENV": "production"
       }
